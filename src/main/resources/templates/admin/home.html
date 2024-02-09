@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{admin/head :: head('Home')}"></head>
+
+<body>
+
+<header th:replace="~{admin/head :: masterbar}"></header>
+
+<div class="wrapper">
+	<div th:replace="~{admin/sidebar :: sidebar}"></div>
+
+	<div class="page-content-wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Admin Dashboard</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer th:replace="~{admin/footer :: footer}"></footer>
+
+<div th:replace="~{admin/footer :: scripts}"></div>
+
+</body>
+</html>

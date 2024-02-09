@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+
+<head th:replace="~{head :: head('Home')}"></head>
+
+<body class="h-full">
+
+<div class="min-h-full">
+
+	<nav th:replace="~{nav :: nav}"></nav>
+	<header th:replace="~{banner :: banner}"></header>
+
+	<main>
+		<div class="main">
+			<div class="feed">
+
+				<div th:if="${latestPosts != null}" th:each="post: ${latestPosts}" class="feed-card">
+					<div class="card-headline">
+						<a class="card-heading" th:href="@{|/posts/${post.id}|}">
+							<h2 th:text="${post.title}"></h2>
+						</a>
+						<div class="signature" th:text="${post.author}"></div>
+					</div>
+					<a class="card-image" th:href="@{|/posts/${post.id}|}">
+						<img src="${post.image}"> <!-- Consider using context-relative url -->
+					</a>
+					<a class="first-words" th:href="@{|/posts/${post.id}|}">
+						<div th:text="${post.shortContent}"></div>
+					</a>
+				</div>
+				<!-- latestPosts array is empty -->
+				<div th:unless="${latestPosts != null}">
+					No posts to show
+				</div>
+
+			</div>
+		</div>
+	</main>
+</div>
+
+<footer th:replace="~{footer :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+
+<head th:replace="~{head :: head('Single Post')}"></head>
+
+<body class="h-full">
+
+<div class="min-h-full">
+	<nav th:replace="~{nav :: nav}"></nav>
+
+	<main>
+		<div class="main">
+			<div class="post-headline">
+				<h1 class="post-heading" th:text="${post.title}"></h1>
+				<span class="signature" th:text="${post.author}"></span>
+			</div>
+			<div class="post-container">
+				<div class="post-body" th:text="${post.content}"></div>
+
+				<!-- <div class="tags">
+					<h3>Tags</h3>
+					<div th:each="tag: ${tags}">
+						<span>#${tag.name}</span>
+					</c:forEach>
+				</div> -->
+
+				<!-- <div class="comments-section">
+					<h2>Comments</h2>
+					<div class="divider"></div>
+
+					<textarea id="add-comment" row="5" placeholder="Add a comment."></textarea>
+					<button onclick="submitComment()" class="app-btn" id="add-comment-btn">Comment</button>
+
+					<div th:each="comment: ${comments}">
+						<div class="comment-cmp">
+							<span class="comment_uname-lbl">${comment.username}</span>
+							<span class="comment_date-lbl">${comment.modifiedAt}</span>
+							<p>${comment.body}</p>
+						</div>
+					</c:forEach>
+				</div> -->
+			</div>
+
+		</div>
+	</main>
+</div>
+
+<footer th:replace="~{footer :: footer}"></footer>
+
+<script>
+	// var postId = ${id};
+	var userId = 2;
+</script>
+
+<script th:src="@{/js/singlePostView.js}"></script>
+
+</body>
+</html>

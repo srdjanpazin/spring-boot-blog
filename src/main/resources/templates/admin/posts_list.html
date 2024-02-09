@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{admin/head :: head('Posts')}"></head>
+
+<body>
+
+<header th:replace="~{admin/head :: masterbar}"></header>
+
+<div class="wrapper">
+	<div th:replace="~{admin/sidebar :: sidebar}"></div>
+
+	<div class="page-content-wrapper">
+		<div class="container-fluid">
+
+			<h2>Posts</h2>
+			<div class="divider"></div>
+			<a th:href="@{/admin/posts/create}">Add new post</a>
+			<div class="divider"></div>
+
+			<div class="admin-grid">
+				<div class="admin-grid__header">
+					Posts
+				</div>
+
+				<div th:each="post: ${posts}" class="grid-item">
+					<div class="grid-item__detail">
+						<h2 class="grid-item__title">
+							<a
+								th:text="${post.title}"
+								th:href="@{|/admin/posts/${post.id}/edit|}"
+								class="grid-item__title-link"
+							></a>
+						</h2>
+						<div th:text="${post.createdAt}" class="grid-item__meta"></div>
+					</div>
+
+					<div class="grid-item__actions">
+						<button class="ellipsis-menu img-button" th:data-item-id="${post.id}">
+							<img src="/images/ellipsis.svg" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer th:replace="~{admin/footer :: footer}"></footer>
+
+<div class="popover">
+	<div role="menu" class="popover__menu">
+		<a onclick="goToEditPost()">Edit</a>
+		<a onclick="goToViewPage()">View</a>
+		<a onclick="deleteItem()">Delete</a>
+	</div>
+</div>
+
+<script>
+	const domain = "posts";
+</script>
+
+<div th:replace="~{admin/footer :: scripts}"></div>
+<script th:src="@{/js/adminGrid.js}"></script>
+
+</body>
+</html>

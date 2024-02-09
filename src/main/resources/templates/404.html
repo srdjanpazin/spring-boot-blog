@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+
+<head th:replace="~{head :: head('404 Not Found')}"></head>
+
+<body class="h-full">
+
+<div class="min-h-full">
+	<nav th:replace="~{nav :: nav}"></nav>
+	<header th:replace="~{banner :: banner}"></header>
+
+	Custom 404 page
+</div>
+
+<footer th:replace="~{footer :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{admin/head :: head('Edit Post')}"></head>
+
+<body>
+
+<header th:replace="~{admin/head :: masterbar}"></header>
+
+<div class="wrapper">
+	<div th:replace="~{admin/sidebar :: sidebar}"></div>
+
+	<div class="page-content-wrapper">
+		<div class="container-fluid">
+
+			<h2 th:text="${#ctx.containsVariable('post')} ? 'Edit post' : 'Add a new post'"></h2>
+			<div class="divider"></div>
+
+			<form id="admin-form" onsubmit="saveChanges(event)">
+				<div class="mb-3">
+					<label for="title" class="form-label">Title</label>
+					<input type="text" class="form-control" id="title" name="title" th:value="${post.title}">
+				</div>
+
+<!--				<div class="mb-3">-->
+<!--					<label for="descr" class="form-label">Description</label>-->
+<!--					<textarea class="form-control" id="descr" name="description" rows="3"></textarea>-->
+<!--				</div>-->
+
+				<div class="mb-3">
+					<label for="content" class="form-label">Content</label>
+					<textarea class="form-control" id="content" name="content" rows="12" th:text="${post.content}"></textarea>
+				</div>
+
+				<div class="mb-3">
+					<label for="category" class="form-label">Category</label>
+					<select class="form-control" id="category" name="category">
+						<option value="">Select an option</option>
+						<option th:each="category: ${categories}" th:value="${category.id}"
+								th:text="${category.name}"></option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label for="tags" class="form-label">Tags</label>
+					<select class="form-control" id="tags" name="tags">
+						<option value="">Select an option</option>
+						<option th:each="tag: ${tags}" th:value="${tag.id}" th:text="${tag.name}"></option>
+					</select>
+				</div>
+
+				<button type="submit">Save</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<footer th:replace="~{admin/footer :: footer}"></footer>
+
+<div th:replace="~{admin/footer :: scripts}"></div>
+
+<script th:if="${post} != null" th:inline="javascript">
+
+	const domain = "posts";
+	const tags = [
+		/*[# th:each="tag: ${tags}"]*/
+			{ id: [(${tag.id})], name: [[${tag.name}]] },
+		/*[/]*/
+	];
+
+	currItemId = [(${post.id})];
+
+	// selectPostTags([(${ post.id })]);
+</script>
+
+<script th:src="@{/js/editObject.js}"></script>
+
+</body>
+</html>
